@@ -3,20 +3,20 @@ const API_URL = "https://jsonplaceholder.typicode.com/posts";
 
 // 1. Closure: keeps track of how many times we call fetch
 function createCounter() {
-  let count = 0;  
+  let count = 0 
   return function () {
-    count++;
-    return count;
+    count++
+    return count
   };
 }
-const fetchCounter = createCounter();
+const fetchCounter = createCounter()
 
 // 2. Constructor function for Post
 function Post(id, userId, title, body) {
-  this.id = id;
-  this.userId = userId;
-  this.title = title;
-  this.body = body;
+  this.id = id
+  this.userId = userId
+  this.title = title
+  this.body = body
 }
 Post.prototype.logDetails = function () {
   console.log(`Post #${this.id} (User ${this.userId}): ${this.title}`);
@@ -33,11 +33,11 @@ function countPostsByUser(posts) {
 // 4. Async function to fetch posts
 async function fetchPosts() {
   try {
-    const callNum = fetchCounter(); 
-    const res = await fetch(API_URL);
-    const posts = await res.json();
+    const callNum = fetchCounter() 
+    const res = await fetch(API_URL)
+    const posts = await res.json()
 
-    console.log(`Fetch call #${callNum}, got ${posts.length} posts`);
+    console.log(`Fetch call #${callNum}, got ${posts.length} posts`)
 
    
     const counts = countPostsByUser(posts);
